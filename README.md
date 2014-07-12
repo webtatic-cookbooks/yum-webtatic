@@ -53,8 +53,8 @@ default['yum']['webtatic-archive']['mirrorlist'] = depends on EL version
 default['yum']['webtatic-archive']['gpgkey'] = depends on EL version
 default['yum']['webtatic-archive']['failovermethod'] = nil - depends whether yum fastest mirrors plugin is installed
 default['yum']['webtatic-archive']['gpgcheck'] = true
-default['yum']['webtatic-archive']['enabled'] = true
-default['yum']['webtatic-archive']['managed'] = true
+default['yum']['webtatic-archive']['enabled'] = false
+default['yum']['webtatic-archive']['managed'] = false
 ```
 
 ``` ruby
