@@ -29,10 +29,9 @@ end
   webtatic-archive webtatic-archive-debuginfo webtatic-archive-source
   webtatic-testing webtatic-testing-debuginfo webtatic-testing-source
   }.each do |repo|
+  next unless node['yum'][repo]['managed']
 
   yum_repository repo do
-    only_if { node['yum'][repo]['managed'] }
-
     node['yum'][repo].each do |key, value|
       next if key == 'managed'
       send key, value
