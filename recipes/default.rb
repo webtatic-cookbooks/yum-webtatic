@@ -16,20 +16,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License
 
-case node['platform_family']
-when 'rhel'
-  case node['platform_version'].to_i
-  when 7
-    include_recipe 'yum-epel'
-  end
-end
-
 %w{
   webtatic webtatic-debuginfo webtatic-source
   webtatic-archive webtatic-archive-debuginfo webtatic-archive-source
   webtatic-testing webtatic-testing-debuginfo webtatic-testing-source
   }.each do |repo|
   next unless node['yum'][repo]['managed']
+
+  case node['platform_family']
+  when 'rhel'
+    case node['platform_version'].to_i
+    when 7
+      include_recipe 'yum-epel' unless run_context.loaded_recipe?('yum-epel')
+    end
+  end
 
   yum_repository repo do
     node['yum'][repo].each do |key, value|
