@@ -47,6 +47,7 @@ a.out
 ###########
 .watchr
 .rspec
+.rubocop.yml
 spec/*
 spec/fixtures/*
 test/*
@@ -68,6 +69,11 @@ Rakefile
 */.hg/*
 */.svn/*
 
+# Bundler #
+###########
+Gemfile
+Gemfile.lock
+
 # Berkshelf #
 #############
 Berksfile
@@ -79,6 +85,7 @@ tmp
 #############
 CONTRIBUTING
 CHANGELOG*
+chefignore
 
 # Strainer #
 ############
