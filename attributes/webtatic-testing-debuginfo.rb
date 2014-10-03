@@ -15,7 +15,10 @@ when 7
 end
 
 default['yum']['webtatic-testing-debuginfo']['description'] = "Webtatic Repository EL#{el_version} - $basearch - Testing Debug"
-default['yum']['webtatic-testing-debuginfo']['mirrorlist'] = "http://mirror.webtatic.com/yum/el#{el_version}-testing/$basearch/debug/mirrorlist"
+
+unless node['yum']['webtatic-testing-debuginfo']['baseurl']
+  default['yum']['webtatic-testing-debuginfo']['mirrorlist'] = "http://mirror.webtatic.com/yum/el#{el_version}-testing/$basearch/debug/mirrorlist"
+end
 
 default['yum']['webtatic-testing-debuginfo']['failovermethod'] = nil
 default['yum']['webtatic-testing-debuginfo']['gpgcheck'] = true

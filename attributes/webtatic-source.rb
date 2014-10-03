@@ -15,7 +15,10 @@ when 7
 end
 
 default['yum']['webtatic-source']['description'] = "Webtatic Repository EL#{el_version} - $basearch - Source"
-default['yum']['webtatic-source']['mirrorlist'] = "http://mirror.webtatic.com/yum/el#{el_version}/SRPMS/mirrorlist"
+
+unless node['yum']['webtatic-source']['baseurl']
+  default['yum']['webtatic-source']['mirrorlist'] = "http://mirror.webtatic.com/yum/el#{el_version}/SRPMS/mirrorlist"
+end
 
 default['yum']['webtatic-source']['failovermethod'] = nil
 default['yum']['webtatic-source']['gpgcheck'] = true

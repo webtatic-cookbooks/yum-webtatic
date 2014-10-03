@@ -158,7 +158,6 @@ Point the webtatic repositories at an internally hosted server.
 
 ```
 node.default['yum']['webtatic']['enabled'] = true
-node.default['yum']['webtatic']['mirrorlist'] = nil
 node.default['yum']['webtatic']['baseurl'] = 'https://internal.example.com/webtatic/el6/x86_64'
 node.default['yum']['webtatic']['sslverify'] = false
 
