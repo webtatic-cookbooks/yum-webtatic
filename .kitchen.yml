@@ -1,0 +1,28 @@
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: centos-5.10
+  - name: centos-6.5
+  - name: centos-7.0
+
+suites:
+  - name: default
+    run_list:
+      - recipe[yum-webtatic::default]
+  - name: customized
+    run_list:
+      - recipe[yum-webtatic::default]
+    attributes:
+      yum:
+        webtatic-testing:
+          managed: true
+        webtatic-archive:
+          managed: true
+          enabled: true
+          baseurl: http://repo.webtatic.com/yum/el5/x86_64/
+        webtatic-debuginfo:
+          managed: true

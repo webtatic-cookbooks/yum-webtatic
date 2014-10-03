@@ -1,5 +1,6 @@
 ## v0.1.2
 * Remove mirrorlist default if baseurl has been supplied
+* Add test-kitchen serverspec and bats test
 
 ## v0.1.1
 * Switch from not_if to conditional resource declaration for consistency
