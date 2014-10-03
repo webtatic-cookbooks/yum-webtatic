@@ -7,17 +7,19 @@ else
   el_version = node['platform_version'].to_i
 end
 
+url_scheme = node['yum-webtatic']['url_scheme']
+
 case el_version
 when 5, 6
-  default['yum']['webtatic-archive']['gpgkey'] = 'http://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-andy'
+  default['yum']['webtatic-archive']['gpgkey'] = "#{url_scheme}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-andy"
 when 7
-  default['yum']['webtatic-archive']['gpgkey'] = 'http://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el7'
+  default['yum']['webtatic-archive']['gpgkey'] = "#{url_scheme}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el7"
 end
 
 default['yum']['webtatic-archive']['description'] = "Webtatic Repository EL#{el_version} - $basearch - Archive"
 
 unless node['yum']['webtatic-archive']['baseurl']
-  default['yum']['webtatic-archive']['mirrorlist'] = "http://mirror.webtatic.com/yum/el#{el_version}-archive/$basearch/mirrorlist"
+  default['yum']['webtatic-archive']['mirrorlist'] = "#{url_scheme}://mirror.webtatic.com/yum/el#{el_version}-archive/$basearch/#{node['yum-webtatic']['mirrorlist']}"
 end
 
 default['yum']['webtatic-archive']['failovermethod'] = nil

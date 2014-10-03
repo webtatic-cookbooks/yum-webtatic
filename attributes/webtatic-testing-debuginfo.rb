@@ -7,17 +7,19 @@ else
   el_version = node['platform_version'].to_i
 end
 
+url_scheme = node['yum-webtatic']['url_scheme']
+
 case el_version
 when 5, 6
-  default['yum']['webtatic-testing-debuginfo']['gpgkey'] = 'http://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-andy'
+  default['yum']['webtatic-testing-debuginfo']['gpgkey'] = "#{url_scheme}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-andy"
 when 7
-  default['yum']['webtatic-testing-debuginfo']['gpgkey'] = 'http://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el7'
+  default['yum']['webtatic-testing-debuginfo']['gpgkey'] = "#{url_scheme}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el7"
 end
 
 default['yum']['webtatic-testing-debuginfo']['description'] = "Webtatic Repository EL#{el_version} - $basearch - Testing Debug"
 
 unless node['yum']['webtatic-testing-debuginfo']['baseurl']
-  default['yum']['webtatic-testing-debuginfo']['mirrorlist'] = "http://mirror.webtatic.com/yum/el#{el_version}-testing/$basearch/debug/mirrorlist"
+  default['yum']['webtatic-testing-debuginfo']['mirrorlist'] = "#{url_scheme}://mirror.webtatic.com/yum/el#{el_version}-testing/$basearch/debug/#{node['yum-webtatic']['mirrorlist']}"
 end
 
 default['yum']['webtatic-testing-debuginfo']['failovermethod'] = nil

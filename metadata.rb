@@ -4,7 +4,7 @@ maintainer_email 'andy@webtatic.com'
 license          'Apache 2.0'
 description      'Installs/Configures yum-webtatic'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.2'
+version          '0.2.0'
 recipe           'default', 'Adds Webtatic repository metadata to yum'
 
 depends 'yum', '~> 3.0'

@@ -17,6 +17,11 @@ Attributes
 The following attributes are set by default depending on EL version
 
 ``` ruby
+default['yum-webtatic']['use_scheme'] = 'https' if node['platform_version'] >= 7
+default['yum-webtatic']['use_scheme'] = 'http' if node['platform_version'] < 7
+```
+
+``` ruby
 default['yum']['webtatic']['repositoryid'] = depends on EL version
 default['yum']['webtatic']['description'] = depends on EL version
 default['yum']['webtatic']['mirrorlist'] = depends on EL version
@@ -117,11 +122,11 @@ Recipes
 
 ```ruby
   yum_repository 'webtatic' do
-    mirrorlist 'http://mirror.webtatic.com/yum/el7/$basearch/mirrorlist'
+    mirrorlist 'https://mirror.webtatic.com/yum/el7/$basearch/mirrorlist_https'
     description 'Webtatic Repository EL7 - $basearch'
     enabled true
     gpgcheck true
-    gpgkey 'http://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el7'
+    gpgkey 'https://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el7'
   end
 ```
 

@@ -1,5 +1,6 @@
-## v0.1.2
+## v0.2.0
 * Remove mirrorlist default if baseurl has been supplied
+* Set RHEL/CentOS/etc 7 to use https urls
 * Add test-kitchen serverspec and bats test
 
 ## v0.1.1
