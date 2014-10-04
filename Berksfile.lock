@@ -7,6 +7,6 @@ GRAPH
   yum (3.3.2)
   yum-epel (0.5.1)
     yum (~> 3.0)
-  yum-webtatic (0.1.2)
+  yum-webtatic (0.2.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)

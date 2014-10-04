@@ -7,7 +7,7 @@ require 'kitchen'
 # Style tests. Rubocop and Foodcritic
 namespace :style do
   desc 'Run Ruby style checks'
-  Rubocop::RakeTask.new(:ruby)
+  RuboCop::RakeTask.new(:ruby)
 
   desc 'Run Chef style checks'
   FoodCritic::Rake::LintTask.new(:chef) do |t|
@@ -19,7 +19,7 @@ namespace :style do
 end
 
 desc 'Run all style checks'
-task :style => ['style:chef', 'style:ruby']
+task :style => %w( style:chef style:ruby )
 
 # Integration tests. Kitchen.ci
 namespace :integration do
@@ -32,6 +32,6 @@ namespace :integration do
   end
 end
 
-task :travis => ['style']
+task :travis => %w( style )
 
-task :test => ['style', 'integration:vagrant']
+task :test => %w( style integration:vagrant )
