@@ -2,6 +2,7 @@
 * Remove mirrorlist default if baseurl has been supplied
 * Set RHEL/CentOS/etc 7 to use https urls
 * Add test-kitchen serverspec and bats test
+* Add Chefspec spec
 
 ## v0.1.1
 * Switch from not_if to conditional resource declaration for consistency

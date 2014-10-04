@@ -1,5 +1,5 @@
 #!/usr/bin/env rake
-
+require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'foodcritic'
 require 'kitchen'
@@ -21,6 +21,10 @@ end
 desc 'Run all style checks'
 task :style => %w( style:chef style:ruby )
 
+# Rspec and ChefSpec
+desc 'Run ChefSpec examples'
+RSpec::Core::RakeTask.new(:spec)
+
 # Integration tests. Kitchen.ci
 namespace :integration do
   desc 'Run Test Kitchen with Vagrant'
@@ -32,6 +36,6 @@ namespace :integration do
   end
 end
 
-task :travis => %w( style )
+task :travis => %w( style spec )
 
-task :test => %w( style integration:vagrant )
+task :test => %w( style spec integration:vagrant )
