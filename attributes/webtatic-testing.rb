@@ -19,10 +19,10 @@ end
 default['yum']['webtatic-testing']['description'] = "Webtatic Repository EL#{el_version} - $basearch - Testing"
 
 unless node['yum']['webtatic-testing']['baseurl']
-  default['yum']['webtatic-testing']['mirrorlist'] = "#{url_scheme}://mirror.webtatic.com/yum/el#{el_version}-testing/$basearch/#{node['yum-webtatic']['mirrorlist']}"
+  default['yum']['webtatic-testing']['mirrorlist'] = "#{url_scheme}://mirror.webtatic.com/yum/el#{el_version}-testing/$basearch/mirrorlist"
 end
 
-default['yum']['webtatic-testing']['failovermethod'] = nil
+default['yum']['webtatic-testing']['failovermethod'] = 'priority'
 default['yum']['webtatic-testing']['gpgcheck'] = true
 default['yum']['webtatic-testing']['enabled'] = false
 default['yum']['webtatic-testing']['managed'] = false

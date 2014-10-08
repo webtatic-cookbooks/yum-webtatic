@@ -3,9 +3,3 @@ default['yum-webtatic']['url_scheme'] = if platform_family?('rhel') && node['pla
                                         else
                                           'http'
                                         end
-
-default['yum-webtatic']['mirrorlist'] = if node['yum-webtatic']['url_scheme'] == 'http'
-                                          'mirrorlist'
-                                        else
-                                          "mirrorlist_#{node['yum-webtatic']['url_scheme']}"
-                                        end

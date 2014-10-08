@@ -19,10 +19,10 @@ end
 default['yum']['webtatic-archive-debuginfo']['description'] = "Webtatic Repository EL#{el_version} - $basearch - Archive Debug"
 
 unless node['yum']['webtatic-archive-debuginfo']['baseurl']
-  default['yum']['webtatic-archive-debuginfo']['mirrorlist'] = "#{url_scheme}://mirror.webtatic.com/yum/el#{el_version}-archive/$basearch/debug/#{node['yum-webtatic']['mirrorlist']}"
+  default['yum']['webtatic-archive-debuginfo']['mirrorlist'] = "#{url_scheme}://mirror.webtatic.com/yum/el#{el_version}-archive/$basearch/debug/mirrorlist"
 end
 
-default['yum']['webtatic-archive-debuginfo']['failovermethod'] = nil
+default['yum']['webtatic-archive-debuginfo']['failovermethod'] = 'priority'
 default['yum']['webtatic-archive-debuginfo']['gpgcheck'] = true
 default['yum']['webtatic-archive-debuginfo']['enabled'] = false
 default['yum']['webtatic-archive-debuginfo']['managed'] = false

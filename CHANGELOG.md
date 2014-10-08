@@ -1,3 +1,6 @@
+## v0.3.0
+* Switch to failover = priority and use mirrorlist rewrite
+
 ## v0.2.0
 * Remove mirrorlist default if baseurl has been supplied
 * Set RHEL/CentOS/etc 7 to use https urls

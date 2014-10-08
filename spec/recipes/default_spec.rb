@@ -10,7 +10,7 @@ describe 'yum-webtatic::default' do
       it "creates yum_repository[#{repo}]" do
         expect(chef_run).to create_yum_repository(repo).with(
           enabled: true,
-          failovermethod: nil,
+          failovermethod: 'priority',
           gpgcheck: true,
           sslverify: true
         )
@@ -100,7 +100,7 @@ describe 'yum-webtatic::default' do
     ).each do |repo|
       it "creates yum_repository[#{repo}]" do
         expect(chef_run).to create_yum_repository(repo).with(
-          mirrorlist: 'https://mirror.webtatic.com/yum/el7/$basearch/mirrorlist_https',
+          mirrorlist: 'https://mirror.webtatic.com/yum/el7/$basearch/mirrorlist',
           sslverify: true
         )
       end
@@ -135,7 +135,7 @@ describe 'yum-webtatic::default' do
     ).each do |repo|
       it "creates yum_repository[#{repo}]" do
         expect(chef_run).to create_yum_repository(repo).with(
-          mirrorlist: 'https://mirror.webtatic.com/yum/el6/$basearch/mirrorlist_https',
+          mirrorlist: 'https://mirror.webtatic.com/yum/el6/$basearch/mirrorlist',
           sslverify: true
         )
       end
