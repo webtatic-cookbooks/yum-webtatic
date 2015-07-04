@@ -10,6 +10,11 @@ end
 url_scheme = node['yum-webtatic']['url_scheme']
 
 case el_version
+when 5
+  default['yum']['webtatic']['sslverify'] = false
+end
+
+case el_version
 when 5, 6
   default['yum']['webtatic']['gpgkey'] = "#{url_scheme}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-andy"
 when 7
