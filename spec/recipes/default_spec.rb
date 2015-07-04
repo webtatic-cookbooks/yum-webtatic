@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'yum-webtatic::default' do
-  context 'yum-webtatic::default uses default attributes' do
+  context 'with default attributes' do
     let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
     %w(
@@ -29,7 +29,7 @@ describe 'yum-webtatic::default' do
 
   end
 
-  context 'yum-webtatic::default can manage all repos' do
+  context 'with all repos set as managed' do
     let(:chef_run) do
       ChefSpec::Runner.new do |node|
         node.set['yum']['webtatic']['managed'] = true
@@ -45,32 +45,32 @@ describe 'yum-webtatic::default' do
       end.converge(described_recipe)
     end
 
-    %w(
-      webtatic
-      webtatic-archive
-    ).each do |repo|
-      it "creates yum_repository[#{repo}]" do
+    it "enables repos marked by default as enabled" do
+      %w(
+        webtatic
+        webtatic-archive
+      ).each do |repo|
         expect(chef_run).to create_yum_repository(repo).with(
           enabled: true
         )
       end
     end
 
-    %w(
-      webtatic-debuginfo webtatic-source
-      webtatic-testing webtatic-testing-debuginfo webtatic-testing-source
-      webtatic-archive-debuginfo webtatic-archive-source
-    ).each do |repo|
-      it "creates yum_repository[#{repo}]" do
+    it "disables repos marked by default as disabled" do
+      %w(
+        webtatic-debuginfo webtatic-source
+        webtatic-testing webtatic-testing-debuginfo webtatic-testing-source
+        webtatic-archive-debuginfo webtatic-archive-source
+      ).each do |repo|
         expect(chef_run).to create_yum_repository(repo).with(
           enabled: false
         )
       end
-    end
+  end
 
   end
 
-  context 'yum-webtatic::default uses set baseurl without mirrorlist' do
+  context 'with a custom baseurl on webtatic repostory' do
     let(:chef_run) do
       ChefSpec::Runner.new do |node|
         node.set['yum']['webtatic']['baseurl'] = 'https://internal.example.com/webtatic/el6/x86_64/'
@@ -78,10 +78,10 @@ describe 'yum-webtatic::default' do
       end.converge(described_recipe)
     end
 
+    it "creates webtatic repostory without the mirrorlist" do
     %w(
       webtatic
     ).each do |repo|
-      it "creates yum_repository[#{repo}]" do
         expect(chef_run).to create_yum_repository(repo).with(
           baseurl: 'https://internal.example.com/webtatic/el6/x86_64/',
           mirrorlist: nil,
@@ -92,13 +92,13 @@ describe 'yum-webtatic::default' do
 
   end
 
-  context 'yum-webtatic::default uses https for RHEL7' do
-    let(:chef_run) { ChefSpec::Runner.new(platform: 'redhat', version: '7.0').converge(described_recipe) }
+  context 'with default url scheme' do
+    let(:chef_run) { ChefSpec::Runner.new(platform: 'redhat', version: '7.1').converge(described_recipe) }
 
-    %w(
-      webtatic
-    ).each do |repo|
-      it "creates yum_repository[#{repo}]" do
+    it "creates webtatic repository with https mirrorlist" do
+      %w(
+        webtatic
+      ).each do |repo|
         expect(chef_run).to create_yum_repository(repo).with(
           mirrorlist: 'https://mirror.webtatic.com/yum/el7/$basearch/mirrorlist',
           sslverify: true
@@ -108,34 +108,19 @@ describe 'yum-webtatic::default' do
 
   end
 
-  context 'yum-webtatic::default uses https for RHEL6' do
-    let(:chef_run) { ChefSpec::Runner.new(platform: 'redhat', version: '6.5').converge(described_recipe) }
-
-    %w(
-      webtatic
-    ).each do |repo|
-      it "creates yum_repository[#{repo}]" do
-        expect(chef_run).to create_yum_repository(repo).with(
-          mirrorlist: 'http://mirror.webtatic.com/yum/el6/$basearch/mirrorlist'
-        )
-      end
-    end
-
-  end
-
-  context 'yum-webtatic::default allows https to be turned on for RHEL6' do
+  context 'with url scheme set to http' do
     let(:chef_run) do
-      ChefSpec::Runner.new(platform: 'redhat', version: '6.5') do |node|
-        node.set['yum-webtatic']['url_scheme'] = 'https'
+      ChefSpec::Runner.new(platform: 'redhat', version: '7.1') do |node|
+        node.set['yum-webtatic']['url_scheme'] = 'http'
       end.converge(described_recipe)
     end
 
-    %w(
-      webtatic
-    ).each do |repo|
-      it "creates yum_repository[#{repo}]" do
+    it "creates webtatic repository with http mirrorlist" do
+      %w(
+        webtatic
+      ).each do |repo|
         expect(chef_run).to create_yum_repository(repo).with(
-          mirrorlist: 'https://mirror.webtatic.com/yum/el6/$basearch/mirrorlist',
+          mirrorlist: 'http://mirror.webtatic.com/yum/el7/$basearch/mirrorlist',
           sslverify: true
         )
       end
