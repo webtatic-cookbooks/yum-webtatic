@@ -1,3 +1,7 @@
+## v0.4.0
+* Use https on all EL versions
+* Disable sslverify on EL5 as it's ciphers are too out of date
+
 ## v0.3.0
 * Switch to failover = priority and use mirrorlist rewrite
 
