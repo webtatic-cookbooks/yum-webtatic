@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'berkshelf', '~> 3.3.0', group: [:integration, :test]
+
 group :integration do
-  gem 'berkshelf', '~> 3.3.0'
   gem 'kitchen-vagrant', '~> 0.18.0'
   gem 'test-kitchen', '~> 1.4.1'
 end

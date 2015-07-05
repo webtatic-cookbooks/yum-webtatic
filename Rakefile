@@ -2,7 +2,7 @@
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'foodcritic'
-require 'kitchen'
+require 'kitchen' if Gem.loaded_specs.key? 'kitchen'
 
 # Style tests. Rubocop and Foodcritic
 namespace :style do
