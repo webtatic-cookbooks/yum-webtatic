@@ -17,8 +17,7 @@ Attributes
 The following attributes are set by default depending on EL version
 
 ``` ruby
-default['yum-webtatic']['use_scheme'] = 'https' if node['platform_version'] >= 7
-default['yum-webtatic']['use_scheme'] = 'http' if node['platform_version'] < 7
+default['yum-webtatic']['use_scheme'] = 'https'
 ```
 
 ``` ruby
