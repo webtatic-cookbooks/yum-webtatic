@@ -1,3 +1,6 @@
+## v0.5.0
+* Use http on EL5 versions
+
 ## v0.4.0
 * Use https on all EL versions
 * Disable sslverify on EL5 as it's ciphers are too out of date
