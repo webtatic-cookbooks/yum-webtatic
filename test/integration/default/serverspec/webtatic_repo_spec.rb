@@ -10,7 +10,7 @@ describe yumrepo('webtatic') do
   it { should be_enabled }
 
   it 'should set mirrorlist to http' do
-    expect(config_file).to contain(%r{^mirrorlist=https://mirror.webtatic.com/})
+    expect(config_file).to contain(%r{^mirrorlist=https\?://mirror.webtatic.com/})
   end
 
   it 'should set gpgcheck to true' do
