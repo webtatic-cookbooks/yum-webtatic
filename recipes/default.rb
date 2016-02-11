@@ -22,7 +22,7 @@
   webtatic-testing webtatic-testing-debuginfo webtatic-testing-source
 ).each do |repo|
   next unless node['yum'][repo]['managed']
-  
+
   include_recipe 'yum-epel' unless run_context.loaded_recipe?('yum-epel')
 
   yum_repository repo do
