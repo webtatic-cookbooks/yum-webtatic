@@ -1,3 +1,6 @@
+## v0.6.0
+* Update to require yum-epel for all repository releases
+
 ## v0.5.0
 * Use http on EL5 versions
 
