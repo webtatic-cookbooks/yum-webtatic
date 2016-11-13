@@ -15,10 +15,10 @@ when 5
 end
 
 case el_version
-when 5, 6
+when 5
   default['yum']['webtatic']['gpgkey'] = "#{url_scheme}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-andy"
-when 7
-  default['yum']['webtatic']['gpgkey'] = "#{url_scheme}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el7"
+when 6, 7
+  default['yum']['webtatic']['gpgkey'] = "#{url_scheme}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el#{el_version}"
 end
 
 default['yum']['webtatic']['description'] = "Webtatic Repository EL#{el_version} - $basearch"

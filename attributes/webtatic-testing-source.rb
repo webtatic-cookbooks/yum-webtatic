@@ -10,10 +10,10 @@ end
 url_schema = node['yum-webtatic']['url_schema']
 
 case el_version
-when 5, 6
+when 5
   default['yum']['webtatic-testing-source']['gpgkey'] = "#{url_schema}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-andy"
-when 7
-  default['yum']['webtatic-testing-source']['gpgkey'] = "#{url_schema}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el7"
+when 6, 7
+  default['yum']['webtatic-testing-source']['gpgkey'] = "#{url_schema}://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el#{el_version}"
 end
 
 default['yum']['webtatic-testing-source']['description'] = "Webtatic Repository EL#{el_version} - $basearch - Testing Source"

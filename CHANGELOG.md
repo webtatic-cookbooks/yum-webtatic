@@ -1,3 +1,6 @@
+## v0.7.0
+* Switch el6 to renamed user id gpg key
+
 ## v0.6.0
 * Update to require yum-epel for all repository releases
 
